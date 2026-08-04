@@ -2,13 +2,14 @@
 services:
   webapp:
     build: .
+    image: webapp
     ports:
     #emin değilim checklemek lazım flusk'ı
       - "8080:5000"
     environment:
         #emin değilim checklemek lazım flusk'ı
 
-      MONGO_URL: mongodb://beyto:Beyto1905.@mongodb:27017/?authSource=admin
+      MONGO_URL: "mongodb://beyto:Beyto1905.@mongodb:27017/?authSource=admin"
       MONGO_DB: mydb
     depends_on:
       - mongodb
