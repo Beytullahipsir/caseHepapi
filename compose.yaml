@@ -1,0 +1,24 @@
+#create compose file for docker
+services:
+  webapp:
+    build: .
+    ports:
+    #emin değilim checklemek lazım flusk'ı
+      - "8080:5000"
+    environment:
+        #emin değilim checklemek lazım flusk'ı
+
+      MONGO_URL: mongodb://beyto:Beyto1905.@mongodb:27017/?authSource=admin
+      MONGO_DB: mydb
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    #birkaç kaynakta portlar 27017:27017 olarak ayarlanmış ama gerek yok yazıyodu eklemek için kalsın
+    ports:
+      - "27017:27017"
+    #secret olarak yazmak yerine referanslar hep buraya yazdı compose file'da ??
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: beyto
+      MONGO_INITDB_ROOT_PASSWORD: Beyto1905.
