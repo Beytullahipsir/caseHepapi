@@ -1,0 +1,10 @@
+#configMap yaml for webapp
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp-configmap
+  #üsttekini -name yazıp env'e koyucaz deployment.yaml'da yapınca alta yıldız koy
+  #yapınca yıldız koy
+data:
+  MONGO_URL: "mongodb://beyto:Beyto1905.@mongo-service:27017/?authSource=admin"
+  MONGO_DB: "mydb" 
