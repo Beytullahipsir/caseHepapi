@@ -1,30 +1,29 @@
-#deployment file for webapp
+#deployment file for webapp 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp-deployment
+  name: {{ .Release.Name }}-webapp-deployment
   labels:
-    app: webapp
+    app: {{ .Release.Name }}-webapp
 spec:
-  replicas: 1
+  replicas: {{ .Values.webapp.replicaCount }}
   selector:
     matchLabels:
-      app: webapp
+      app: {{ .Release.Name }}-webapp
   
   template:
     metadata:
-      name: webapp
+      name: {{ .Release.Name }}-webapp
       labels:
-        app: webapp
+        app: {{ .Release.Name }}-webapp
         tier: frontend
     spec:
       containers:
         - name: webapp
-          image: webapp:v1
-    #buraya kadar standart ve doğru geldik
+          image: "{{ .Values.webapp.image.repository }}:{{ .Values.webapp.image.tag }}"
           
           ports:
             - containerPort: 5000
           envFrom:
             - configMapRef:
-                name: webapp-configmap
+                name: {{ .Release.Name }}-webapp-configmap

@@ -2,26 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongodb-deployment
+  name: {{ .Release.Name }}-mongodb-deployment
   labels:
-    app: mongodb
+    app: {{ .Release.Name }}-mongodb
 spec:
-  replicas: 1
+  replicas: {{ .Values.mongodb.replicaCount }}
   selector:
     matchLabels:
-      app: mongodb
+      app: {{ .Release.Name }}-mongodb
   template:
     metadata:
-      name: mongodb
+      name: {{ .Release.Name }}-mongodb
       labels:
-        app: mongodb
+        app: {{ .Release.Name }}-mongodb
         tier: backend
     spec:
       containers:
         - name: mongodb
-          image: mongo
+          image: "{{ .Values.mongodb.image.repository }}:{{ .Values.mongodb.image.tag }}"
           ports:
             - containerPort: 27017
           envFrom:
             - secretRef:
-                name: mongodb-secret
+                name: {{ .Release.Name }}-mongodb-secret
