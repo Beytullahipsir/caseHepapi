@@ -1,0 +1,27 @@
+#deployment for mognodb
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mongodb-deployment
+  labels:
+    app: {{ .Release.Name }}-mongodb
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-mongodb
+  template:
+    metadata:
+      name: {{ .Release.Name }}-mongodb
+      labels:
+        app: {{ .Release.Name }}-mongodb
+        tier: backend
+    spec:
+      containers:
+        - name: mongodb
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.image.targetPort }}
+          envFrom:
+            - secretRef:
+                name: {{ .Release.Name }}-mongodb-secret

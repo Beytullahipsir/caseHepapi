@@ -1,0 +1,16 @@
+#mongodb için clusterIP service yaml dosyası
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mongo-service
+  labels:
+    app: {{ .Release.Name }}-mongodb
+spec:
+  type: {{ .Values.service.type }}
+  
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+
+  selector:
+    app: {{ .Release.Name }}-mongodb

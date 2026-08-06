@@ -1,0 +1,15 @@
+replicaCount: 1
+
+image:
+  repository: "mongo"
+  tag: "latest"
+  #pullPolicy: IfNotPresent bu lazım değil v1 var bizde !!
+  targetPort: 27017
+
+service:
+  type: ClusterIP
+  port: 27017
+  targetPort: 27017
+
+
+#secret gelecek

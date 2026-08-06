@@ -1,0 +1,29 @@
+#deployment file for webapp 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-webapp-deployment
+  labels:
+    app: {{ .Release.Name }}-webapp
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-webapp
+  
+  template:
+    metadata:
+      name: {{ .Release.Name }}-webapp
+      labels:
+        app: {{ .Release.Name }}-webapp
+        tier: frontend
+    spec:
+      containers:
+        - name: webapp
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+          ports:
+            - containerPort: {{ .Values.image.targetPort }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-webapp-configmap

@@ -1,0 +1,16 @@
+#NodePort service for webapp
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-webapp-service
+  labels: 
+    app: {{ .Release.Name }}-webapp
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: {{ .Release.Name }}-webapp
+  ports:
+    - targetPort: {{ .Values.service.targetPort }}
+      port: {{ .Values.service.port }}
+      nodePort: {{ .Values.service.nodePort }}
+
