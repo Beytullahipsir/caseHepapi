@@ -7,5 +7,5 @@ metadata:
   #yapınca yıldız koy
 data:
   MONGO_URL: "mongodb://beyto:Beyto1905.@{{ .Release.Name }}-mongo-service:27017/?authSource=admin"
-  MONGO_DB: "mydb" 
-
+  MONGO_DB: {{ .Values.configMap.DB }}
+  #URL de values da olmalı !!

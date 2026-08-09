@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ .Release.Name }}-webapp
 spec:
-  replicas: {{ .Values.webapp.replicaCount }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}-webapp
@@ -20,10 +20,10 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: "{{ .Values.webapp.image.repository }}:{{ .Values.webapp.image.tag }}"
-          
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
           ports:
-            - containerPort: 5000
+            - containerPort: {{ .Values.image.targetPort }}
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name }}-webapp-configmap

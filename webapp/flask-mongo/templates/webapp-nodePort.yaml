@@ -6,11 +6,11 @@ metadata:
   labels: 
     app: {{ .Release.Name }}-webapp
 spec:
-  type: NodePort
+  type: {{ .Values.service.type }}
   selector:
     app: {{ .Release.Name }}-webapp
   ports:
-    - targetPort: 5000 
-      port: 5000 
-      nodePort: 30080
+    - targetPort: {{ .Values.service.targetPort }}
+      port: {{ .Values.service.port }}
+      nodePort: {{ .Values.service.nodePort }}
 
