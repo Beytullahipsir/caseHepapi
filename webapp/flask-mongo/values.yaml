@@ -7,11 +7,18 @@ image:
   targetPort: 5000
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 5000
   targetPort: 5000
-  nodePort: 30080
 
 configMap:
     DB: "mydb" 
     #url complex sonra çözeceğim
+
+
+ingress:
+  host: webapp.local
+
+
+# # enabled: false
+
