@@ -11,5 +11,7 @@ service:
   port: 27017
   targetPort: 27017
 
+storage:
+  size: "500Mi"
 
 #secret gelecek

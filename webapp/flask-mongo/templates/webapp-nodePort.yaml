@@ -12,5 +12,4 @@ spec:
   ports:
     - targetPort: {{ .Values.service.targetPort }}
       port: {{ .Values.service.port }}
-      nodePort: {{ .Values.service.nodePort }}
-
+#artık clusterIP
