@@ -28,7 +28,7 @@ jobs:
           version: v3.18.4
 
       - name: Update Helm dependencies
-        run: helm dependency update webapp/flask-mongo
+        run: helm dependency update webapp
 
       - name: Deploy with Helm
-        run: helm upgrade --install case webapp/flask-mongo --wait --timeout 60s
+        run: helm upgrade --install case webapp --wait --timeout 60s
