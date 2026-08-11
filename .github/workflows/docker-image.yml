@@ -28,6 +28,6 @@ jobs:
       with:
         version: v3.18.4
     - name: Install Helm dependencies
-      run: helm dependency update webapp/flask-mongo
+      run: helm dependency update webapp
     - name: Lint Helm chart
-      run: helm lint webapp/flask-mongo
+      run: helm lint webapp
