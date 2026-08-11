@@ -1,0 +1,15 @@
+flask-mongo: 
+
+  replicaCount: 2 
+  image:
+    repository: "webapp"
+    tag: "v1"
+    targetPort: 5000
+    
+mongodb:
+  replicaCount: 2
+  image:
+    repository: "mongo"
+    tag: "latest"
+    targetPort: 27017
+
