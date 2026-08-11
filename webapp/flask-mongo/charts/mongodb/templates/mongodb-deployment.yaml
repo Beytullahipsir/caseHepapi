@@ -25,4 +25,13 @@ spec:
           envFrom:
             - secretRef:
                 name: {{ .Release.Name }}-mongodb-secret
+          storage:
+            volumeMounts:
+              - name: mongodb-storage
+                mountPath: /data/db
+
+      volumes:
+         - name: mongodb-storage
+           persistentVolumeClaim:
+             claimName: {{ .Release.Name }}-mongodb-pvc
                 
