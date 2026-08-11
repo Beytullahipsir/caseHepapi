@@ -24,9 +24,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Helm
-      uses: azure/setup-helm@v3
+      uses: azure/setup-helm@v5
       with:
-        version: v3.12.0
+        version: v3.18.4
     - name: Install Helm dependencies
       run: helm dependency update webapp/flask-mongo
     - name: Lint Helm chart
