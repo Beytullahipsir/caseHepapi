@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Release.Name }}-webapp-claim
+  name: {{ .Values.PVC.name }} 
 #    labels:
 #        app: {{ .Release.Name }}-webapp
 spec:
   accessModes:
     - ReadWriteOnce #bir nod okuma yazma yapabilir
-  storageClassName: {{ .Release.Name }}-sc
+  storageClassName: {{ .Values.storage.className }} #values'a yaz
   resources:   
     requests:
       storage: {{ .Values.storage.size }} #values'a yaz kaç Gi yaz

@@ -10,6 +10,5 @@ spec:
   selector:
     app: {{ .Release.Name }}-webapp
   ports:
-    - targetPort: {{ .Values.service.targetPort }}
+    - targetPort: {{ .Values.service.port }}
       port: {{ .Values.service.port }}
-#artık clusterIP

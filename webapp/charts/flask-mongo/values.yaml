@@ -1,15 +1,14 @@
 replicaCount: 1
+tier: frontend
 
 image:
   repository: "webapp"
   tag: "v1"
   #pullPolicy: IfNotPresent bu lazım değil v1 var bizde !!
-  targetPort: 5000
 
 service:
   type: ClusterIP
   port: 5000
-  targetPort: 5000
 
 configMap:
     DB: "mydb" 
@@ -18,6 +17,7 @@ configMap:
 
 ingress:
   host: webapp.local
-
+  className: nginx
+  path: /
 
 # # enabled: false

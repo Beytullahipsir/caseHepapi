@@ -1,4 +1,5 @@
 replicaCount: 1
+tier: backend
 
 image:
   repository: "mongo"
@@ -9,9 +10,18 @@ image:
 service:
   type: ClusterIP
   port: 27017
-  targetPort: 27017
 
 storage:
   size: "500Mi"
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowVolumeExpansion: true
+  provisioner: k8s.io/minikube-hostpath
+  className: mystorage-sc
+
+PVC:
+  name: myclaim
+
+
 
 #secret gelecek

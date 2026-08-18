@@ -15,14 +15,22 @@ spec:
       name: {{ .Release.Name }}-mongodb
       labels:
         app: {{ .Release.Name }}-mongodb
-        tier: backend
+        tier: {{ .Values.tier }}
     spec:
       containers:
         - name: mongodb
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
-            - containerPort: {{ .Values.image.targetPort }}
+            - containerPort: {{ .Values.service.port}}
           envFrom:
             - secretRef:
                 name: {{ .Release.Name }}-mongodb-secret
+
+          volumeMounts:
+            - name: mongodb-storage
+              mountPath: /data/db
+      volumes:
+        - name: mongodb-storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.PVC.name }}
                 
