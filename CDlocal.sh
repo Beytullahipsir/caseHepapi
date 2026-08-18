@@ -10,5 +10,6 @@ docker build -t "$REPO:$TAG" .
 minikube image load "$REPO:$TAG"
 helm upgrade --install "$RELEASE_NAME" ./webapp 
 
+kubectl get all
 kubectl get pods
 kubectl get ingress
