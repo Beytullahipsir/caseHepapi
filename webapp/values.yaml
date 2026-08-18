@@ -1,15 +1,16 @@
 flask-mongo: 
-
-  replicaCount: 2 
   image:
     repository: "webapp"
     tag: "v1"
     targetPort: 5000
+  replicaCount: 2 
+
     
 mongodb:
-  replicaCount: 2
   image:
     repository: "mongo"
     tag: "latest"
     targetPort: 27017
+  replicaCount: 1
 
+releaseName: "myrelease"
