@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Values.PVC.name }} 
+  name: {{ .Release.Name }}-pvc
 #    labels:
 #        app: {{ .Release.Name }}-webapp
 spec:

@@ -32,5 +32,5 @@ spec:
       volumes:
         - name: mongodb-storage
           persistentVolumeClaim:
-            claimName: {{ .Values.PVC.name }}
+            claimName: {{ .Release.Name }}-pvc
                 
